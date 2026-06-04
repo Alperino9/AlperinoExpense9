@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101217">
+  <meta name="description" content="AlperinoExpense ile gelir ve giderlerinizi çevrimdışı takip edin.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="AlperinoExpense">
+  <title>AlperinoExpense | Gelir Gider Takip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="welcome-screen" id="welcomeScreen" aria-label="Açılış menüsü">
+    <div class="welcome-panel">
+      <div class="welcome-brand">
+        <img src="icon-192.png" alt="" width="74" height="74">
+        <div>
+          <p class="eyebrow">PWA Finans Paneli</p>
+          <h1>AlperinoExpense</h1>
+        </div>
+      </div>
+      <div class="welcome-balance" id="welcomeBalance">₺0,00</div>
+      <div class="welcome-actions">
+        <button class="primary-button" id="openAppButton" type="button">Panele Geç</button>
+        <button class="quick-action income-action" id="quickIncomeButton" type="button">Gelir Ekle</button>
+        <button class="quick-action expense-action" id="quickExpenseButton" type="button">Gider Ekle</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="app-shell">
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">AlperinoExpense</p>
+        <h1>Gelir Gider Takip</h1>
+      </div>
+      <div class="status-pill" id="connectionStatus" aria-live="polite">
+        <span class="status-dot"></span>
+        <span>Çevrimiçi</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="summary-grid" aria-label="Finansal özet">
+        <article class="summary-card income-card">
+          <span class="summary-label">Toplam Gelir</span>
+          <strong id="totalIncome">₺0,00</strong>
+        </article>
+        <article class="summary-card expense-card">
+          <span class="summary-label">Toplam Gider</span>
+          <strong id="totalExpense">₺0,00</strong>
+        </article>
+        <article class="summary-card balance-card" id="balanceCard">
+          <span class="summary-label">Net Bakiye</span>
+          <strong id="netBalance">₺0,00</strong>
+        </article>
+      </section>
+
+      <section class="workspace-grid">
+        <form class="panel transaction-form" id="transactionForm" autocomplete="off">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Yeni işlem</p>
+              <h2>Gelir veya gider ekle</h2>
+            </div>
+          </div>
+
+          <div class="type-toggle" role="radiogroup" aria-label="İşlem tipi">
+            <label>
+              <input type="radio" name="type" value="income">
+              <span>Gelir</span>
+            </label>
+            <label>
+              <input type="radio" name="type" value="expense" checked>
+              <span>Gider</span>
+            </label>
+          </div>
+
+          <div class="form-grid">
+            <label class="field">
+              <span>Miktar</span>
+              <input id="amountInput" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="Örn. 450.00" required>
+            </label>
+
+            <label class="field">
+              <span>Kategori</span>
+              <select id="categoryInput" required></select>
+            </label>
+
+            <label class="field">
+              <span>Tarih</span>
+              <input id="dateInput" type="date" required>
+            </label>
+
+            <label class="field field-wide">
+              <span>Açıklama</span>
+              <input id="descriptionInput" type="text" maxlength="80" placeholder="Kısa açıklama">
+            </label>
+          </div>
+
+          <p class="form-message" id="formMessage" aria-live="polite"></p>
+          <button class="primary-button" type="submit">İşlem Ekle</button>
+        </form>
+
+        <section class="panel history-panel">
+          <div class="panel-heading history-heading">
+            <div>
+              <p class="eyebrow">Kayıtlar</p>
+              <h2>İşlem geçmişi</h2>
+            </div>
+            <div class="filters" aria-label="İşlem filtreleri">
+              <label>
+                <span>Tip</span>
+                <select id="typeFilter">
+                  <option value="all">Tümü</option>
+                  <option value="income">Gelir</option>
+                  <option value="expense">Gider</option>
+                </select>
+              </label>
+              <label>
+                <span>Kategori</span>
+                <select id="categoryFilter">
+                  <option value="all">Tüm kategoriler</option>
+                </select>
+              </label>
+              <button class="ghost-button" id="clearFiltersButton" type="button">Temizle</button>
+            </div>
+          </div>
+
+          <div class="transaction-list" id="transactionList" aria-live="polite"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
+

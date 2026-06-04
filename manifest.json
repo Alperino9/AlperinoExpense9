@@ -1,0 +1,29 @@
+﻿{
+  "id": "./",
+  "name": "AlperinoExpense - Gelir Gider Takip",
+  "short_name": "AlperinoExpense",
+  "description": "AlperinoExpense ile gelir ve giderlerinizi çevrimdışı takip edin.",
+  "lang": "tr",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#101217",
+  "theme_color": "#101217",
+  "categories": ["finance", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+
